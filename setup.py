@@ -86,7 +86,7 @@ def validate_mod_id(value: str):
 def validate_group(value: str):
     if not re.fullmatch(r"[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)*", value):
         abort(
-            f"mod.group must be a valid Java package (e.g. com.example). Got: '{value}'"
+            f"mod.group must be a valid Java package (e.g. dev.nanleb). Got: '{value}'"
         )
 
 
@@ -146,7 +146,7 @@ PROPS_FILE = ROOT / "stonecutter.properties.toml"
 if not PROPS_FILE.exists():
     abort("Run this script from the root of the stonecutter-mod-template repository.")
 
-if not has_mod_id(read(PROPS_FILE), "modtemplate"):
+if not has_mod_id(read(PROPS_FILE), "cortescombatspatialguifix"):
     warn("stonecutter.properties.toml no longer contains the default mod.id.")
     confirm = ask(
         "Setup may have already been run. Continue anyway? [y/N]", default="N"
@@ -157,7 +157,7 @@ if not has_mod_id(read(PROPS_FILE), "modtemplate"):
 
 print(f"""
 {CYAN}======================================={RESET}
-{CYAN}  Stonecutter Mod Template Setup{RESET}
+{CYAN}  Stonecutter Cortes combat spatial gui fix Setup{RESET}
 {CYAN}======================================={RESET}
 """)
 info("Answer the following questions to configure your mod.")
@@ -168,7 +168,7 @@ mod_id = ask("Mod ID (lowercase letters/digits/underscores)")
 validate_mod_id(mod_id)
 
 mod_name = ask("Mod display name")
-mod_group = ask("Java group (e.g. com.example)", default="com.example")
+mod_group = ask("Java group (e.g. dev.nanleb)", default="dev.nanleb")
 validate_group(mod_group)
 
 mod_version = ask("Mod version", default="0.1.0")
@@ -200,9 +200,9 @@ mod_environment = ask(
 )
 validate_environment(mod_environment)
 
-old_pkg = "com/example/modtemplate"
+old_pkg = "com/example/cortescombatspatialguifix"
 new_pkg = f"{mod_group.replace(".", "/")}/{mod_id}"
-old_java_pkg = "com.example.modtemplate"
+old_java_pkg = "dev.nanleb.cortescombatspatialguifix"
 new_java_pkg = f"{mod_group}.{mod_id}"
 
 print()
@@ -272,14 +272,14 @@ write(PROPS_FILE, new_props)
 
 # Mixin config file
 
-mixin_old = ROOT / "src/main/resources/modtemplate.mixins.json"
+mixin_old = ROOT / "src/main/resources/cortescombatspatialguifix.mixins.json"
 mixin_new = ROOT / f"src/main/resources/{mod_id}.mixins.json"
 
 if mixin_old.exists():
     info("Renaming mixin config ...")
     mixin_old.rename(mixin_new)
     replace_in_file(
-        mixin_new, '"com.example.modtemplate.mixin"', f'"{new_java_pkg}.mixin"'
+        mixin_new, '"dev.nanleb.cortescombatspatialguifix.mixin"', f'"{new_java_pkg}.mixin"'
     )
 
 # pack.mcmeta
@@ -304,7 +304,7 @@ if old_pkg != new_pkg and old_java_root.exists():
     for java_file in new_java_root.rglob("*.java"):
         replace_in_file(java_file, old_java_pkg, new_java_pkg)
 
-    shutil.rmtree(ROOT / "src/main/java/com/example/modtemplate")
+    shutil.rmtree(ROOT / "src/main/java/com/example/cortescombatspatialguifix")
     for empty_dir in [ROOT / "src/main/java/com/example", ROOT / "src/main/java/com"]:
         if empty_dir.exists() and not any(empty_dir.iterdir()):
             empty_dir.rmdir()

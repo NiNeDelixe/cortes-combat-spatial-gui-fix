@@ -19,6 +19,17 @@ platform {
 		required("neoforge") {
 			forgeLikeVersionRange.set("[${prop("deps.neoforge")},)")
 		}
+		if (sc.current.version == "1.21.1") {
+			required("cortescombat") {
+				forgeLikeVersionRange = "[${prop("deps.cortescombat")},)"
+				environment = "client"
+			}
+			required("spatial_gui") {
+				slug("spatial-gui")
+				forgeLikeVersionRange = "[1.11.0,)"
+				environment = "client"
+			}
+		}
 	}
 }
 
@@ -62,9 +73,21 @@ neoForge {
 repositories {
 	mavenCentral()
 	strictMaven("https://api.modrinth.com/maven", "maven.modrinth") { name = "Modrinth" }
+	if (sc.current.version == "1.21.1") {
+		ivy("https://github.com/CerebroCanibalus/cortes-combat/releases/download") {
+			patternLayout { artifact("v[revision]/[artifact]-[revision]-[classifier].[ext]") }
+			metadataSources { artifact() }
+			content { includeModule("com.cortes.combat", "cortescombat") }
+		}
+	}
 }
 
 dependencies {
+	if (sc.current.version == "1.21.1") {
+		implementation("com.cortes.combat:cortescombat:${prop("deps.cortescombat")}:${sc.current.version}@jar")
+		implementation("maven.modrinth:spatial-gui:${prop("deps.spatial-gui")}")
+		runtimeOnly("maven.modrinth:yacl:${prop("deps.yacl")}")
+	}
 	// implementation(libs.moulberry.mixinconstraints)
 	// jarJar(libs.moulberry.mixinconstraints)
 }

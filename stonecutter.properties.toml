@@ -1,11 +1,11 @@
 [mod]
-id = "modtemplate"
-name = "Mod Template"
-group = "com.example"
+id = "cortescombatspatialguifix"
+name = "Cortes combat spatial gui fix"
+group = "dev.nanleb"
 version = "0.1.0"
 channel_tag = "-alpha.2"
 description = "Example Description"
-authors = ["AuthorName", "AnotherAuthorName"]
+authors = ["NanLeb", "AnotherNanLeb"]
 contributors = ["ContributorName", "AnotherContributorName"]
 inception_year = "2025"
 license.name = "MIT"
@@ -37,12 +37,12 @@ dev_jvm_args_mixin_debug = [
 ]
 
 [[mod.pom.developers]]
-id = "authorname"
-name = "AuthorName"
+id = "NanLeb"
+name = "NanLeb"
 url = "https://github.com/ghost"
 [[mod.pom.developers]]
-id = "anotherauthorname"
-name = "AnotherAuthorName"
+id = "anotherNanLeb"
+name = "AnotherNanLeb"
 url = "https://github.com/ghost"
 
 [fabric]
@@ -82,6 +82,14 @@ deps.modmenu = "20.0.2"
 
 [forge]
 
+[forge."1.20.1"]
+deps.minecraft = "1.20.1"
+deps.forge = "47.4.28"
+deps.cortescombat = "1.6.1"
+deps.spatial-gui = "1.11.0-forge+1.20.1"
+deps.yacl = "3.6.6+1.20.1-forge"
+mod.environment = "client_only"
+
 [forge."1.19.2"]
 deps.minecraft = "1.19.2"
 deps.forge = "43.5.2"
@@ -90,7 +98,11 @@ deps.forge = "43.5.2"
 
 [neoforge."1.21.1"]
 deps.minecraft = "1.21.1"
-deps.neoforge = "21.1.213"
+deps.neoforge = "21.1.250"
+deps.cortescombat = "1.6.1"
+deps.spatial-gui = "1.11.0-neoforge+1.21.1"
+deps.yacl = "3.8.2+1.21.1-neoforge"
+mod.environment = "client_only"
 
 [neoforge."1.21.7"]
 deps.minecraft = "1.21.7"

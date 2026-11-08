@@ -1,6 +1,17 @@
-# Stonecutter Mod Template
+# Stonecutter Cortes combat spatial gui fix
 
-A multi-platform Minecraft mod template for **Fabric**, **NeoForge**, and **Forge**,
+Hides Cortés Combat's crosshair when Spatial GUI requests it on **NeoForge 1.21.1** and **Forge 1.20.1**.
+Other template build targets are retained but do not include this fix.
+
+Build the supported targets with Java 25:
+
+```sh
+./gradlew :1.21.1-neoforge:build :1.20.1-forge:build
+```
+
+Run the standalone cancellation check with `python scripts/test_crosshair_mixin.py` (requires a JDK).
+
+A multi-platform Minecraft Cortes combat spatial gui fix for **Fabric**, **NeoForge**, and **Forge**,
 using [Stonecutter](https://stonecutter.kikugie.dev/) for
 multiversion and multiloader code.
 This is the Java-only version adapted from KikuGie's Elytra Trims
@@ -51,12 +62,12 @@ Edit `stonecutter.properties.toml` to set your mod's metadata:
 
 | Property           | Description                                  | Example                                                           |
 |--------------------|----------------------------------------------|-------------------------------------------------------------------|
-| `mod.id`           | Your mod's identifier (lowercase, no spaces) | `modtemplate`                                                     |
-| `mod.name`         | Display name of your mod                     | `Mod Template`                                                    |
-| `mod.group`        | Java package group                           | `com.example`                                                     |
+| `mod.id`           | Your mod's identifier (lowercase, no spaces) | `cortescombatspatialguifix`                                                     |
+| `mod.name`         | Display name of your mod                     | `Cortes combat spatial gui fix`                                                    |
+| `mod.group`        | Java package group                           | `dev.nanleb`                                                     |
 | `mod.version`      | Mod version number                           | `0.1.0`                                                           |
 | `mod.channel_tag`  | Optional release channel tag                 | `-alpha.0`                                                        |
-| `mod.authors`      | Name of the author(s), as a TOML array       | `["AuthorName"]`                                                  |
+| `mod.authors`      | Name of the author(s), as a TOML array       | `["NanLeb"]`                                                  |
 | `mod.contributors` | Contributor names, as a TOML array           | `["ContributorName", "AnotherContributorName"]`                   |
 | `mod.license.name` | License type                                 | `MIT`                                                             |
 | `mod.description`  | Short mod description                        | `Example Description`                                             |
@@ -71,14 +82,14 @@ e.g. `[fabric."1.21.7"]`.
 
 #### 5. **Rename package structure**
 
-Rename the `com.example.modtemplate` package in
+Rename the `dev.nanleb.cortescombatspatialguifix` package in
 `src/main/java/` to match your `mod.group` and `mod.id`.
 
 #### 6. **Update resource files**
 
 Rename these files to match your `mod.id`:
 
-* `src/main/resources/modtemplate.mixins.json`
+* `src/main/resources/cortescombatspatialguifix.mixins.json`
 
 Replace `src/main/resources/assets/icon.png` and `.idea/icon.png` with your mod's icon.
 
@@ -126,8 +137,8 @@ Be careful to run the correct task for the selected Stonecutter platform and Min
 
 The template uses a platform abstraction pattern to keep shared code loader-agnostic:
 
-* **Shared code** goes in `com.example.modtemplate` (no platform dependencies)
-* **Platform-specific code** goes in `com.example.modtemplate.platform.{fabric|neoforge|forge}`
+* **Shared code** goes in `dev.nanleb.cortescombatspatialguifix` (no platform dependencies)
+* **Platform-specific code** goes in `dev.nanleb.cortescombatspatialguifix.platform.{fabric|neoforge|forge}`
 * The `Platform` interface provides loader-specific functionality to shared code
 
 ### Adding Dependencies

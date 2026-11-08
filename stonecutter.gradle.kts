@@ -19,5 +19,5 @@ stonecutter parameters {
 	swaps["mod_name"] = "\"${properties.getAs<String>("mod.name")}\";"
 	swaps["mod_group"] = "\"${properties.getAs<String>("mod.group")}\";"
 	swaps["minecraft"] = "\"${current.version}\";"
-	constants["release"] = properties.getAs<String>("mod.id") != "modtemplate"
+	constants["release"] = properties.getAs<String>("mod.id") != "cortescombatspatialguifix"
 }
