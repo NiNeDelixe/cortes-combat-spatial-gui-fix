@@ -1,8 +1,8 @@
-package dev.nanleb.cortescombatspatialguifix.platform.forge;
+package dev.nanleb.ccssgfix.platform.forge;
 
 //? forge {
 
-/*import dev.nanleb.cortescombatspatialguifix.cortescombatspatialguifix;
+/*import dev.nanleb.ccssgfix.cortescombatspatialguifix;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod(cortescombatspatialguifix.MOD_ID)

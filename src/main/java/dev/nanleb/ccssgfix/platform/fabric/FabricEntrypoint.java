@@ -1,8 +1,8 @@
-package dev.nanleb.cortescombatspatialguifix.platform.fabric;
+package dev.nanleb.ccssgfix.platform.fabric;
 
 //? fabric {
 
-import dev.nanleb.cortescombatspatialguifix.cortescombatspatialguifix;
+/*import dev.nanleb.ccssgfix.cortescombatspatialguifix;
 import dev.kikugie.fletching_table.annotation.fabric.Entrypoint;
 import net.fabricmc.api.ModInitializer;
 
@@ -14,4 +14,4 @@ public class FabricEntrypoint implements ModInitializer {
 		cortescombatspatialguifix.onInitialize();
 	}
 }
-//?}
+*///?}

@@ -52,7 +52,7 @@ sources = {
         }
     """,
     "CrosshairCheck.java": """
-        import dev.nanleb.cortescombatspatialguifix.mixin.CombatCrosshairMixin;
+        import dev.nanleb.ccssgfix.mixin.CombatCrosshairMixin;
         import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
         import org.tastytrash.spatialGUI.client.SpatialGUIClient;
         public class CrosshairCheck {

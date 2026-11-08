@@ -1,8 +1,8 @@
-package dev.nanleb.cortescombatspatialguifix.platform.fabric.datagen;
+package dev.nanleb.ccssgfix.platform.fabric.datagen;
 
 //? fabric && != 1.19.2 {
 
-import dev.nanleb.cortescombatspatialguifix.cortescombatspatialguifix;
+/*import dev.nanleb.ccssgfix.cortescombatspatialguifix;
 
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.core.HolderLookup;
@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 
 //? if 1.21.1
-//import net.minecraft.data.PackOutput;
+import net.minecraft.data.PackOutput;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -31,17 +31,17 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
 
 	//? if 1.21.1 {
-	/*@Override
+	@Override
 	public void buildRecipes(RecipeOutput recipeOutput) {
 		IntRecipeProvider provider = new IntRecipeProvider(this.output, this.registriesFuture);
 		provider.buildRecipes(recipeOutput);
 	}
-	*///? } else {
-	@Override
+	//? } else {
+	/^@Override
 	protected @NotNull RecipeProvider createRecipeProvider(HolderLookup.Provider provider, RecipeOutput recipeOutput) {
 		return new IntRecipeProvider(provider, recipeOutput);
 	}
-	//? }
+	^///? }
 
 
 	@Override
@@ -52,7 +52,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 	static class IntRecipeProvider extends RecipeProvider {
 
 		//? if 1.21.1 {
-		/*public IntRecipeProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> completableFuture) {
+		public IntRecipeProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> completableFuture) {
 			super(packOutput, completableFuture);
 		}
 
@@ -61,8 +61,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 			buildLavaChickenRecipe(ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.COOKED_CHICKEN))
 					.save(recipeOutput, "lava_chicken_recipe");
 		}
-		*///? } else {
-		protected IntRecipeProvider(HolderLookup.Provider provider, RecipeOutput recipeOutput) {
+		//? } else {
+		/^protected IntRecipeProvider(HolderLookup.Provider provider, RecipeOutput recipeOutput) {
 			super(provider, recipeOutput);
 		}
 
@@ -72,7 +72,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 			buildLavaChickenRecipe(ShapelessRecipeBuilder.shapeless(itemLookup, RecipeCategory.FOOD, Items.COOKED_CHICKEN))
 					.save(output, "lava_chicken_recipe");
 		}
-		//? }
+		^///? }
 
 		private ShapelessRecipeBuilder buildLavaChickenRecipe(ShapelessRecipeBuilder builder) {
 			return builder.requires(Items.LAVA_BUCKET)
@@ -82,4 +82,4 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		}
 	}
 }
-//?}
+*///?}

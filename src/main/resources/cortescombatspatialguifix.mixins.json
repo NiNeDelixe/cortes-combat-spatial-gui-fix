@@ -1,5 +1,5 @@
 {
-  "package": "dev.nanleb.cortescombatspatialguifix.mixin",
+  "package": "dev.nanleb.ccssgfix.mixin",
   "required": true,
   "minVersion": "0.8",
   "compatibilityLevel": "${java}",

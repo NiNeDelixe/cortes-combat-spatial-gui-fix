@@ -1,7 +1,7 @@
 # Stonecutter Cortes combat spatial gui fix
 
 Hides Cortés Combat's crosshair when Spatial GUI requests it on **NeoForge 1.21.1** and **Forge 1.20.1**.
-Other template build targets are retained but do not include this fix.
+These are the only supported build targets.
 
 Build the supported targets with Java 25:
 
@@ -11,7 +11,7 @@ Build the supported targets with Java 25:
 
 Run the standalone cancellation check with `python scripts/test_crosshair_mixin.py` (requires a JDK).
 
-A multi-platform Minecraft Cortes combat spatial gui fix for **Fabric**, **NeoForge**, and **Forge**,
+A multi-platform Minecraft Cortes combat spatial gui fix for **NeoForge** and **Forge**,
 using [Stonecutter](https://stonecutter.kikugie.dev/) for
 multiversion and multiloader code.
 This is the Java-only version adapted from KikuGie's Elytra Trims
@@ -23,7 +23,7 @@ you ([Alternative Templates](https://stonecutter.kikugie.dev/wiki/tips/multiload
 
 ## Features
 
-* Single codebase for Fabric, NeoForge, and Forge
+* Single codebase for NeoForge 1.21.1 and Forge 1.20.1
 * Single codebase for multiple Minecraft versions
 * CI/CD with GitHub Actions for automated builds and releases
 * Separate build scripts for each platform
@@ -32,7 +32,7 @@ you ([Alternative Templates](https://stonecutter.kikugie.dev/wiki/tips/multiload
 
 ### Prerequisites
 
-* Knowledge of Fabric, NeoForge, and/or Forge
+* Knowledge of NeoForge and/or Forge
 * Suitable IDE
 * Java 25 or higher
 * Git
@@ -78,11 +78,11 @@ Edit `stonecutter.properties.toml` to set your mod's metadata:
 
 Dependencies and properties that are specific to a version/loader
 are defined in `stonecutter.properties.toml` under their respective `[loader."version"]` table,
-e.g. `[fabric."1.21.7"]`.
+e.g. `[neoforge."1.21.1"]`.
 
 #### 5. **Rename package structure**
 
-Rename the `dev.nanleb.cortescombatspatialguifix` package in
+Rename the `dev.nanleb.ccssgfix` package in
 `src/main/java/` to match your `mod.group` and `mod.id`.
 
 #### 6. **Update resource files**
@@ -103,18 +103,18 @@ Configure Stonecutter in `stonecutter.gradle.kts` and `settings.gradle.kts`.
 Example of platform-specific code using Stonecutter comments:
 
 ```java
-//? fabric {
-fabricOnlyCode();
+//? neoforge {
+neoforgeOnlyCode();
 //?} else {
-/*neoforgeOnlyCode();*/
+/*forgeOnlyCode();*/
 //?}
 ```
 
 Version-specific code works similarly:
 
 ```java
-//? 1.21.7 {
-LOGGER.info("hello 1.21.7!");
+//? 1.21.1 {
+LOGGER.info("hello 1.21.1!");
 //?} else {
 /*LOGGER.info("hello from any other version!");
  *///?}
@@ -137,8 +137,8 @@ Be careful to run the correct task for the selected Stonecutter platform and Min
 
 The template uses a platform abstraction pattern to keep shared code loader-agnostic:
 
-* **Shared code** goes in `dev.nanleb.cortescombatspatialguifix` (no platform dependencies)
-* **Platform-specific code** goes in `dev.nanleb.cortescombatspatialguifix.platform.{fabric|neoforge|forge}`
+* **Shared code** goes in `dev.nanleb.ccssgfix` (no platform dependencies)
+* **Platform-specific code** goes in `dev.nanleb.ccssgfix.platform.{fabric|neoforge|forge}`
 * The `Platform` interface provides loader-specific functionality to shared code
 
 ### Adding Dependencies
@@ -150,7 +150,7 @@ mod hosting platforms.
 
 ```kotlin
 platform {
-  loader = "fabric" // or "neoforge" / "forge"
+  loader = "neoforge" // or "forge"
   dependencies {
     required("my-lib") {
       slug("my-lib") // Mod hosting platform slug (here the slug is the same on both Modrinth and CurseForge)
@@ -164,14 +164,7 @@ platform {
 
 ### Data Generation
 
-Run Fabric data generation to create recipes, tags, and other data:
-
-```bash
-./gradlew :1.21.7-fabric:runDatagen
-```
-
-Generated files appear in `versions/datagen/{mc_version}/src/main/generated/`.
-The current setup uses Fabric data generation for all platforms to keep everything consistent.
+Fabric data generation is not configured for the supported build targets.
 
 ### Environment Variables
 

@@ -1,7 +1,7 @@
-package dev.nanleb.cortescombatspatialguifix.platform.fabric.datagen;
+package dev.nanleb.ccssgfix.platform.fabric.datagen;
 
 //? fabric {
-import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
+/*import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 //? != 1.19.2 {
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -18,4 +18,4 @@ public class FabricDataGeneratorEntrypoint implements DataGeneratorEntrypoint {
 	}
 
 }
-//?}
+*///?}

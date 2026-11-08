@@ -1,8 +1,8 @@
-package dev.nanleb.cortescombatspatialguifix.platform.neoforge;
+package dev.nanleb.ccssgfix.platform.neoforge;
 
 //? neoforge {
 
-/*import dev.nanleb.cortescombatspatialguifix.cortescombatspatialguifix;
+import dev.nanleb.ccssgfix.cortescombatspatialguifix;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -15,4 +15,4 @@ public class NeoforgeClientEventSubscriber {
 		cortescombatspatialguifix.onInitializeClient();
 	}
 }
-*///?}
+//?}

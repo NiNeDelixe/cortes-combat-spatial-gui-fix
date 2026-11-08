@@ -1,8 +1,8 @@
-package dev.nanleb.cortescombatspatialguifix.platform.fabric;
+package dev.nanleb.ccssgfix.platform.fabric;
 
 //? fabric {
 
-import dev.nanleb.cortescombatspatialguifix.platform.Platform;
+/*import dev.nanleb.ccssgfix.platform.Platform;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class FabricPlatform implements Platform {
@@ -27,4 +27,4 @@ public class FabricPlatform implements Platform {
 		return FabricLoader.getInstance().isDevelopmentEnvironment();
 	}
 }
-//?}
+*///?}

@@ -1,4 +1,4 @@
-package dev.nanleb.cortescombatspatialguifix.platform;
+package dev.nanleb.ccssgfix.platform;
 
 public interface Platform {
 	boolean isModLoaded(String modId);

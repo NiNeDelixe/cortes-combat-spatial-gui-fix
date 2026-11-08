@@ -202,7 +202,7 @@ validate_environment(mod_environment)
 
 old_pkg = "com/example/cortescombatspatialguifix"
 new_pkg = f"{mod_group.replace(".", "/")}/{mod_id}"
-old_java_pkg = "dev.nanleb.cortescombatspatialguifix"
+old_java_pkg = "dev.nanleb.ccssgfix"
 new_java_pkg = f"{mod_group}.{mod_id}"
 
 print()
@@ -279,7 +279,7 @@ if mixin_old.exists():
     info("Renaming mixin config ...")
     mixin_old.rename(mixin_new)
     replace_in_file(
-        mixin_new, '"dev.nanleb.cortescombatspatialguifix.mixin"', f'"{new_java_pkg}.mixin"'
+        mixin_new, '"dev.nanleb.ccssgfix.mixin"', f'"{new_java_pkg}.mixin"'
     )
 
 # pack.mcmeta
