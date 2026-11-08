@@ -1,6 +1,6 @@
 # Stonecutter Cortes combat spatial gui fix
 
-Hides Cortés Combat's crosshair when Spatial GUI requests it on **NeoForge 1.21.1** and **Forge 1.20.1**.
+Hides Cortés Combat's crosshair while Spatial GUI shows a 3D screen, in first- and third-person modes, on **NeoForge 1.21.1** and **Forge 1.20.1**.
 These are the only supported build targets.
 
 Build the supported targets with Java 25:

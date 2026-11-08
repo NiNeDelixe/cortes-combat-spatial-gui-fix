@@ -13,7 +13,7 @@ assert '@MixinEnvironment(type = MixinEnvironment.Env.CLIENT)' in source
 assert '@Inject(method = "render", at = @At("HEAD"), cancellable = true)' in source
 
 sources = {
-    "dev/nanleb/cortescombatspatialguifix/mixin/CombatCrosshairMixin.java": source,
+    "dev/nanleb/ccssgfix/mixin/CombatCrosshairMixin.java": source,
     "com/cortes/combat/client/CombatCrosshairLayer.java": """
         package com.cortes.combat.client;
         public class CombatCrosshairLayer {}
@@ -44,6 +44,13 @@ sources = {
             public void cancel() { cancelled = true; }
         }
     """,
+    "org/tastytrash/spatialGUI/api/SpatialGUIAPI.java": """
+        package org.tastytrash.spatialGUI.api;
+        public class SpatialGUIAPI {
+            public static boolean active;
+            public static boolean isActive() { return active; }
+        }
+    """,
     "org/tastytrash/spatialGUI/client/SpatialGUIClient.java": """
         package org.tastytrash.spatialGUI.client;
         public class SpatialGUIClient {
@@ -54,16 +61,20 @@ sources = {
     "CrosshairCheck.java": """
         import dev.nanleb.ccssgfix.mixin.CombatCrosshairMixin;
         import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+        import org.tastytrash.spatialGUI.api.SpatialGUIAPI;
         import org.tastytrash.spatialGUI.client.SpatialGUIClient;
         public class CrosshairCheck {
             public static void main(String[] args) throws Exception {
                 var method = CombatCrosshairMixin.class.getDeclaredMethod("hideCrosshair", CallbackInfo.class);
                 method.setAccessible(true);
-                for (boolean hidden : new boolean[] { false, true }) {
-                    SpatialGUIClient.hidden = hidden;
+                // Active screens must also hide Cortes when shouldHideCrosshair() is false.
+                boolean[][] states = { { false, false }, { true, true }, { true, false } };
+                for (boolean[] state : states) {
+                    SpatialGUIAPI.active = state[0];
+                    SpatialGUIClient.hidden = state[1];
                     var ci = new CallbackInfo();
                     method.invoke(new CombatCrosshairMixin(), ci);
-                    assert ci.cancelled == hidden : "Unexpected crosshair cancellation";
+                    assert ci.cancelled == SpatialGUIAPI.active : "Crosshair must hide for every active spatial screen";
                 }
             }
         }
@@ -80,4 +91,4 @@ with tempfile.TemporaryDirectory() as directory:
     subprocess.run(["javac", "-d", directory, *files], check=True)
     subprocess.run(["java", "-ea", "-cp", directory, "CrosshairCheck"], check=True)
 
-print("Crosshair mixin checks passed (visible and hidden).")
+print("Crosshair mixin checks passed (inactive, active, and active with shouldHideCrosshair=false).")
